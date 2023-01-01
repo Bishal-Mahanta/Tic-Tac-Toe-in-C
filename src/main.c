@@ -19,7 +19,6 @@ int gameData[9] = {[0 ... 8] = -1};
 // FIXME: Change the values of x and o to ASCII values
 int x = 88, o = 79, intToChar = 48;
 
-
 // Two players will be playing the game (0 and 1)
 // activePlayer will be used to keep track of the player playing the game
 int activePlayer = 1;
@@ -102,7 +101,7 @@ bool init(void) {
   // ANCHOR init
   for (int i = 0; i < 9; i++)
     gameData[i] = i + intToChar;
-  
+
   // TODO : Press Enter to initiate the toss
   printf("Press [Enter] to initiate the toss");
   char startGame;
@@ -118,7 +117,33 @@ bool init(void) {
   printNewLines(1);
 
   // TODO : Display marker menu
+  printf("Choose your marker: \n");
+  printf("1. X\n");
+  printf("2. O\n");
+  printNewLines(1);
+
   // TODO : Ask Player to choose marker
+  int marker;
+  bool isValidMarker = false;
+  do {
+    printf("Enter your choice: ");
+    scanf("%d", &marker);
+
+    if (marker != 1 && marker != 2) {
+      printf("Invalid marker");
+      printNewLines(1);
+    }
+
+    if (marker == 1 || marker == 2)
+      isValidMarker = true;
+
+  } while (!isValidMarker);
+
+  if (marker != 1 && marker != 2) {
+    printf("Invalid marker");
+    printNewLines(1);
+    return false;
+  }
   // TODO : Assign marker to player i.e, store values in playerMarker array
 
   return true;
@@ -170,7 +195,7 @@ bool markBoard(void) {
 
   gameData[position] = playerMarker[activePlayer];
   playerScores[activePlayer][position] = position;
-  
+
   drawBoard();
 
   return true;
