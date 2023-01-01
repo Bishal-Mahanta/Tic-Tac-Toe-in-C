@@ -17,7 +17,7 @@
 
 int gameData[9] = {[0 ... 8] = -1};
 // FIXME: Change the values of x and o to ASCII values
-int x = 88, o = 79, intToChar = 48;
+int x = 88, o = 79, intToChar = 49;
 bool isGameRunning = true;
 
 // Two players will be playing the game (0 and 1)
@@ -25,8 +25,10 @@ bool isGameRunning = true;
 int activePlayer = 1;
 int playerMarker[2];
 int playerScores[2][5] = {[0 ... 1][0 ... 4] = -1};
-int winCondition[8][3] = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6},
-                          {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}};
+// int winCondition[8][3] = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6},
+//                           {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}};
+int winCondition[8][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 4, 7},
+                          {2, 5, 8}, {3, 6, 9}, {1, 5, 9}, {3, 5, 7}};
 
 /**
  * @brief Prints empty lines to console
@@ -225,20 +227,20 @@ bool markBoard(void) {
   int position;
   scanf("%d", &position);
 
-  if (position < 0 || position > 8) {
+  if (position < 1 || position > 9) {
     printf("Invalid position");
     printNewLines(1);
     return false;
   }
 
-  if (gameData[position] == x && gameData[position] == o) {
+  if (gameData[position-1] == x && gameData[position-1] == o) {
     printf("Position already marked");
     printNewLines(1);
     return false;
   }
 
-  gameData[position] = playerMarker[activePlayer];
-  playerScores[activePlayer][position] = position;
+  gameData[position-1] = playerMarker[activePlayer];
+  playerScores[activePlayer][position-1] = position;
 
   checkForWin();
 
