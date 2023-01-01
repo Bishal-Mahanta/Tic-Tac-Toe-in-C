@@ -291,20 +291,3 @@ bool checkForWin(void) {
   }
   return true;
 }
-
-/* for (int j = 0; j < 8 && win == false; j++) {
-      counter = 0;
-    for (int i = 0; i < 5 && win == false; i++) {
-      for (int k = 0; k < 3; k++) {
-        if (testArr[0][i] == winCondition[j][k])
-          counter++;
-        // printf("winCondition: %d\t", winCondition[j][k]);
-        printf("i = %d\tj = %d\tk = %d\ttestArr = %d\t winCondition = %d\t", i,
-  j, k, testArr[0][i], winCondition[j][k]); printf("counter: %d\n", counter); if
-  (counter == 3) { printf("Win"); printNewLines(1); win = true; break;
-        }
-        // printNewLines(1);
-      }
-      // printNewLines(1);
-    }
-  } */
