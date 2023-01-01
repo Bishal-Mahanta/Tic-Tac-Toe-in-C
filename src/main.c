@@ -277,6 +277,7 @@ bool markBoard(void) {
   playerScores[activePlayer][position - 1] = position - 1;
 
   checkForWin();
+  isDraw();
 
   if (isGameRunning) {
     switchPlayer();
@@ -313,7 +314,7 @@ bool checkForWin(void) {
           break;
         }
 
-        isDraw();
+        // isDraw();
       }
     }
   }
@@ -335,12 +336,12 @@ bool isDraw(void) {
       drawCounter++;
   }
 
-  if (drawCounter == 9) {
+  if (drawCounter == 9 && isGameRunning) {
     drawBoard();
     printf("Game Drawn 😐");
     printNewLines(1);
     isGameRunning = false;
-    return true;
+    // return true;
   }
 
   return false;
