@@ -18,12 +18,13 @@
 int gameData[9] = {[0 ... 8] = -1};
 // FIXME: Change the values of x and o to ASCII values
 int x = 88, o = 79, intToChar = 48;
+bool isGameRunning = true;
 
 // Two players will be playing the game (0 and 1)
 // activePlayer will be used to keep track of the player playing the game
 int activePlayer = 1;
 int playerMarker[2];
-int playerScores[2][5] = {};
+int playerScores[2][5] = {[0 ... 1][0 ... 4] = -1};
 int winCondition[8][3] = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6},
                           {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}};
 
@@ -72,14 +73,16 @@ bool markBoard(void);
  *
  * @return int activePlayer
  */
-int checkForWin(void);
+bool checkForWin(void);
 
 int main(int argc, char *argv[]) {
   // ANCHOR Main Function
   system("clear");
+
   init();
-  // switchPlayer();
-  // drawBoard();
+  while (isGameRunning) {
+    markBoard();
+  }
 
   return true;
 }
@@ -109,6 +112,7 @@ int printNewLines(int lines) {
 bool init(void) {
   // ANCHOR init
   // Initialize gameData array
+
   for (int i = 0; i < 9; i++)
     gameData[i] = i + intToChar;
 
@@ -120,7 +124,6 @@ bool init(void) {
   printf("Press [Enter] to initiate the toss");
   char startGame;
   scanf("%c", &startGame);
-  printf("%d", startGame);
   printNewLines(1);
 
   // Simulate a toss to decide who decides first
@@ -173,7 +176,6 @@ bool switchPlayer(void) {
   // ANCHOR switchPlayer
   activePlayer = !activePlayer;
 
-  printf("activePlayer: %d\t inactivePlayer: %d\n", activePlayer, !activePlayer);
   return true;
 }
 
@@ -194,6 +196,7 @@ bool drawBoard(void) {
     printf("Player %d: %c\t", i, playerMarker[i]);
   printNewLines(2);
 
+  // Display the Tic Tac Toe Board
   printf("   |   |   \n");
   printf(" %c | %c | %c \n", gameData[0], gameData[1], gameData[2]);
   printf("---+---+---\n");
@@ -201,7 +204,7 @@ bool drawBoard(void) {
   printf("---+---+---\n");
   printf(" %c | %c | %c \n", gameData[6], gameData[7], gameData[8]);
   printf("   |   |   \n");
-  
+
   printNewLines(2);
 
   return true;
@@ -215,6 +218,9 @@ bool drawBoard(void) {
  */
 bool markBoard(void) {
   // ANCHOR markBoard
+  printf("Player %d's turn", activePlayer);
+  printNewLines(1);
+
   printf("Enter the position to mark: ");
   int position;
   scanf("%d", &position);
@@ -225,7 +231,7 @@ bool markBoard(void) {
     return false;
   }
 
-  if (gameData[position] != invalid) {
+  if (gameData[position] == x && gameData[position] == o) {
     printf("Position already marked");
     printNewLines(1);
     return false;
@@ -234,6 +240,9 @@ bool markBoard(void) {
   gameData[position] = playerMarker[activePlayer];
   playerScores[activePlayer][position] = position;
 
+  checkForWin();
+
+  switchPlayer();
   drawBoard();
 
   return true;
@@ -245,7 +254,7 @@ bool markBoard(void) {
  * @return true
  * @return false
  */
-int checkForWin(void) {
+bool checkForWin(void) {
   // ANCHOR checkForWin
   bool win = false;
   int counter = 0;
@@ -260,10 +269,11 @@ int checkForWin(void) {
           printf("Win");
           printNewLines(1);
           win = true;
+          isGameRunning = false;
           break;
         }
       }
     }
   }
-  return activePlayer;
+  return true;
 }
