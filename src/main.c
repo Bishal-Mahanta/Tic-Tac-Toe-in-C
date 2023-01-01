@@ -16,6 +16,8 @@
 #define invalid -1
 
 int gameData[9] = {[0 ... 8] = -1};
+// FIXME: Change the values of x and o to ASCII values
+int x = 88, o = 79, intToChar = 48;
 
 // Two players will be playing the game (0 and 1)
 // activePlayer will be used to keep track of the player playing the game
@@ -31,6 +33,14 @@ int winCondition[8][3] = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6},
  * @return int
  */
 int printNewLines(int);
+
+/**
+ * @brief Initialize the game
+ *
+ * @return true
+ * @return false
+ */
+bool init(void);
 
 /**
  * @brief Draw a Tic Tac Toe Board
@@ -55,9 +65,11 @@ bool markBoard(void);
  */
 int checkForWin(void);
 
-// ANCHOR Main Function
 int main(int argc, char *argv[]) {
-  system("clear");  
+  // ANCHOR Main Function
+  system("clear");
+  init();
+  drawBoard();
 
   return true;
 }
@@ -79,6 +91,20 @@ int printNewLines(int lines) {
 }
 
 /**
+ * @brief Initialize the game
+ *
+ * @return true
+ * @return false
+ */
+bool init(void) {
+  // ANCHOR init
+  for (int i = 0; i < 9; i++)
+    gameData[i] = i + intToChar;
+
+  return true;
+}
+
+/**
  * @brief Draw a Tic Tac Toe Board
  *
  * @return true
@@ -86,6 +112,14 @@ int printNewLines(int lines) {
  */
 bool drawBoard(void) {
   // ANCHOR drawBoard
+
+  printf("   |   |   \n");
+  printf(" %c | %c | %c \n", gameData[0], gameData[1], gameData[2]);
+  printf("---+---+---\n");
+  printf(" %c | %c | %c \n", gameData[3], gameData[4], gameData[5]);
+  printf("---+---+---\n");
+  printf(" %c | %c | %c \n", gameData[6], gameData[7], gameData[8]);
+  printf("   |   |   \n");
 
   return true;
 }
@@ -104,7 +138,7 @@ bool markBoard(void) {
 
 /**
  * @brief Check if the game has been won
- * 
+ *
  * @return true
  * @return false
  */
