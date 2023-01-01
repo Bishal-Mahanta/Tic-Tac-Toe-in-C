@@ -1,1 +1,2 @@
-Made a simple Tic Tac Toe game in C
+# Tic Tac Toe
+A simple Tic Tac Toe game in C
