@@ -16,11 +16,12 @@
 #define invalid -1
 
 int gameData[9] = {[0 ... 8] = -1};
-int playerMarker[2] = {0, 1};
+
 
 // Two players will be playing the game (0 and 1)
 // activePlayer will be used to keep track of the player playing the game
 int activePlayer = 1;
+int playerMarker[2];
 int playerScores[2][5] = {};
 int winCondition[8][3] = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6},
                           {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}};
