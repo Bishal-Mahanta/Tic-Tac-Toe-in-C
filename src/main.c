@@ -118,8 +118,8 @@ bool init(void) {
 
   // TODO : Display marker menu
   printf("Choose your marker: \n");
-  printf("1. X\n");
-  printf("2. O\n");
+  printf("0. X\n");
+  printf("1. O\n");
   printNewLines(1);
 
   // TODO : Ask Player to choose marker
@@ -129,21 +129,16 @@ bool init(void) {
     printf("Enter your choice: ");
     scanf("%d", &marker);
 
-    if (marker != 1 && marker != 2) {
+    if (marker != 1 && marker != 0) {
       printf("Invalid marker");
       printNewLines(1);
     }
 
-    if (marker == 1 || marker == 2)
+    if (marker == 1 || marker == 0)
       isValidMarker = true;
 
   } while (!isValidMarker);
 
-  if (marker != 1 && marker != 2) {
-    printf("Invalid marker");
-    printNewLines(1);
-    return false;
-  }
   // TODO : Assign marker to player i.e, store values in playerMarker array
 
   return true;
