@@ -197,13 +197,13 @@ bool drawBoard(void) {
   printNewLines(2);
 
   // Display the Tic Tac Toe Board
-  printf("   |   |   \n");
-  printf(" %c | %c | %c \n", gameData[0], gameData[1], gameData[2]);
-  printf("---+---+---\n");
-  printf(" %c | %c | %c \n", gameData[3], gameData[4], gameData[5]);
-  printf("---+---+---\n");
-  printf(" %c | %c | %c \n", gameData[6], gameData[7], gameData[8]);
-  printf("   |   |   \n");
+  printf("\t   |   |   \n");
+  printf("\t %c | %c | %c \n", gameData[0], gameData[1], gameData[2]);
+  printf("\t---+---+---\n");
+  printf("\t %c | %c | %c \n", gameData[3], gameData[4], gameData[5]);
+  printf("\t---+---+---\n");
+  printf("\t %c | %c | %c \n", gameData[6], gameData[7], gameData[8]);
+  printf("\t   |   |   \n");
 
   printNewLines(2);
 
