@@ -44,6 +44,14 @@ int printNewLines(int);
 bool init(void);
 
 /**
+ * @brief Switch the active player
+ *
+ * @return true
+ * @return false
+ */
+bool switchPlayer(void);
+
+/**
  * @brief Draw a Tic Tac Toe Board
  *
  * @return true
@@ -70,7 +78,8 @@ int main(int argc, char *argv[]) {
   // ANCHOR Main Function
   system("clear");
   init();
-  drawBoard();
+  // switchPlayer();
+  // drawBoard();
 
   return true;
 }
@@ -155,6 +164,20 @@ bool init(void) {
 }
 
 /**
+ * @brief Switch the active player
+ *
+ * @return true
+ * @return false
+ */
+bool switchPlayer(void) {
+  // ANCHOR switchPlayer
+  activePlayer = !activePlayer;
+
+  printf("activePlayer: %d\t inactivePlayer: %d\n", activePlayer, !activePlayer);
+  return true;
+}
+
+/**
  * @brief Draw a Tic Tac Toe Board
  *
  * @return true
@@ -169,7 +192,7 @@ bool drawBoard(void) {
   printNewLines(1);
   for (int i = 0; i < 2; i++)
     printf("Player %d: %c\t", i, playerMarker[i]);
-  printNewLines(1);
+  printNewLines(2);
 
   printf("   |   |   \n");
   printf(" %c | %c | %c \n", gameData[0], gameData[1], gameData[2]);
@@ -179,7 +202,7 @@ bool drawBoard(void) {
   printf(" %c | %c | %c \n", gameData[6], gameData[7], gameData[8]);
   printf("   |   |   \n");
   
-  printNewLines(1);
+  printNewLines(2);
 
   return true;
 }
