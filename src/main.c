@@ -16,6 +16,7 @@
 #define invalid -1
 
 int gameData[9] = {[0 ... 8] = -1};
+int playerMarker[2] = {0, 1};
 
 // Two players will be playing the game (0 and 1)
 // activePlayer will be used to keep track of the player playing the game
@@ -98,6 +99,23 @@ bool drawBoard(void) {
  */
 bool markBoard(void) {
   // ANCHOR markBoard
+  printf("Enter the position to mark: ");
+  int position;
+  scanf("%d", &position);
+
+  if (position < 0 || position > 8) {
+    printf("Invalid position");
+    printNewLines(1);
+    return false;
+  }
+
+  if (gameData[position] != invalid) {
+    printf("Position already marked");
+    printNewLines(1);
+    return false;
+  }
+
+  gameData[position] = activePlayer;
 
   return true;
 }
