@@ -149,6 +149,12 @@ bool init(void) {
   // TODO : Assign marker to player i.e, store values in playerMarker array
   playerMarker[activePlayer] = x;
 
+  // TODO : Display the marker chosen by the player
+  printNewLines(1);
+  for (int i = 0; i < 2; i++)
+    printf("Player %d: %c\t", i, playerMarker[i]);
+  printNewLines(1);
+
   return true;
 }
 
