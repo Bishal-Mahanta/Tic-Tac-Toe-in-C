@@ -24,7 +24,7 @@ bool isGameRunning = true;
 // activePlayer will be used to keep track of the player playing the game
 int activePlayer = 1;
 int playerMarker[2];
-int playerScores[2][5] = {[0 ... 1][0 ... 4] = -1};
+int playerScores[2][9] = {[0 ... 1][0 ... 8] = -1};
 int winCondition[8][3] = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6},
                           {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}};
 // int winCondition[8][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 4, 7},
@@ -248,7 +248,7 @@ bool markBoard(void) {
   }
 
   gameData[position - 1] = playerMarker[activePlayer];
-  playerScores[activePlayer][position - 1] = position-1;
+  playerScores[activePlayer][position - 1] = position - 1;
 
   checkForWin();
 
@@ -273,11 +273,13 @@ bool checkForWin(void) {
 
   for (int j = 0; j < 8 && win == false; j++) {
     counter = 0;
-    for (int i = 0; i < 5 && win == false; i++) {
+    for (int i = 0; i < 9 && win == false; i++) {
       for (int k = 0; k < 3; k++) {
         if (playerScores[activePlayer][i] == winCondition[j][k])
           counter++;
+
         if (counter == 3) {
+          drawBoard();
           printf("Player %d Wins 🥳", activePlayer);
           printNewLines(1);
           win = true;
@@ -289,3 +291,20 @@ bool checkForWin(void) {
   }
   return true;
 }
+
+/* for (int j = 0; j < 8 && win == false; j++) {
+      counter = 0;
+    for (int i = 0; i < 5 && win == false; i++) {
+      for (int k = 0; k < 3; k++) {
+        if (testArr[0][i] == winCondition[j][k])
+          counter++;
+        // printf("winCondition: %d\t", winCondition[j][k]);
+        printf("i = %d\tj = %d\tk = %d\ttestArr = %d\t winCondition = %d\t", i,
+  j, k, testArr[0][i], winCondition[j][k]); printf("counter: %d\n", counter); if
+  (counter == 3) { printf("Win"); printNewLines(1); win = true; break;
+        }
+        // printNewLines(1);
+      }
+      // printNewLines(1);
+    }
+  } */
