@@ -77,6 +77,14 @@ bool markBoard(void);
  */
 bool checkForWin(void);
 
+/**
+ * @brief Check if the game has been drawn
+ *
+ * @return true
+ * @return false
+ */
+bool isDraw(void);
+
 int main(int argc, char *argv[]) {
   // ANCHOR Main Function
   system("clear");
@@ -269,16 +277,16 @@ bool markBoard(void) {
 bool checkForWin(void) {
   // ANCHOR checkForWin
   bool win = false;
-  int counter = 0;
+  int winCounter = 0;
 
   for (int j = 0; j < 8 && win == false; j++) {
-    counter = 0;
+    winCounter = 0;
     for (int i = 0; i < 9 && win == false; i++) {
       for (int k = 0; k < 3; k++) {
         if (playerScores[activePlayer][i] == winCondition[j][k])
-          counter++;
+          winCounter++;
 
-        if (counter == 3) {
+        if (winCounter == 3) {
           drawBoard();
           printf("Player %d Wins 🥳", activePlayer);
           printNewLines(1);
@@ -286,8 +294,36 @@ bool checkForWin(void) {
           isGameRunning = false;
           break;
         }
+
+        isDraw();
       }
     }
   }
   return true;
+}
+
+/**
+ * @brief Check if the game has been drawn
+ *
+ * @return true
+ * @return false
+ */
+bool isDraw(void) {
+  // ANCHOR isDraw
+  int drawCounter = 0;
+
+  for (int i = 0; i < 9; i++) {
+    if (gameData[i] == x || gameData[i] == o)
+      drawCounter++;
+  }
+
+  if (drawCounter == 9) {
+    drawBoard();
+    printf("Game Drawn 😐");
+    printNewLines(1);
+    isGameRunning = false;
+    return true;
+  }
+
+  return false;
 }
