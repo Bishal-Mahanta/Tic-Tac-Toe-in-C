@@ -25,10 +25,10 @@ bool isGameRunning = true;
 int activePlayer = 1;
 int playerMarker[2];
 int playerScores[2][5] = {[0 ... 1][0 ... 4] = -1};
-// int winCondition[8][3] = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6},
-//                           {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}};
-int winCondition[8][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 4, 7},
-                          {2, 5, 8}, {3, 6, 9}, {1, 5, 9}, {3, 5, 7}};
+int winCondition[8][3] = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6},
+                          {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}};
+// int winCondition[8][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 4, 7},
+//                           {2, 5, 8}, {3, 6, 9}, {1, 5, 9}, {3, 5, 7}};
 
 /**
  * @brief Prints empty lines to console
@@ -220,27 +220,35 @@ bool drawBoard(void) {
  */
 bool markBoard(void) {
   // ANCHOR markBoard
+  bool isValidMove = false;
+  int position;
+
   printf("Player %d's turn", activePlayer);
   printNewLines(1);
 
-  printf("Enter the position to mark: ");
-  int position;
-  scanf("%d", &position);
+  while (!isValidMove) {
+    printf("Enter the position to mark: ");
+    scanf("%d", &position);
 
-  if (position < 1 || position > 9) {
-    printf("Invalid position");
-    printNewLines(1);
-    return false;
+    if (position < 1 || position > 9) {
+      printf("Invalid position");
+      printNewLines(1);
+      continue;
+    }
+
+    if (gameData[position - 1] == x || gameData[position - 1] == o) {
+      printf("Position already marked");
+      printNewLines(1);
+      continue;
+    }
+
+    if ((gameData[position - 1] != x || gameData[position - 1] != o) &&
+        position >= 1 && position <= 9)
+      isValidMove = true;
   }
 
-  if (gameData[position-1] == x && gameData[position-1] == o) {
-    printf("Position already marked");
-    printNewLines(1);
-    return false;
-  }
-
-  gameData[position-1] = playerMarker[activePlayer];
-  playerScores[activePlayer][position-1] = position;
+  gameData[position - 1] = playerMarker[activePlayer];
+  playerScores[activePlayer][position - 1] = position-1;
 
   checkForWin();
 
