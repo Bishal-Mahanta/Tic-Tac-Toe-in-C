@@ -99,8 +99,13 @@ int printNewLines(int lines) {
  */
 bool init(void) {
   // ANCHOR init
+  // Initialize gameData array
   for (int i = 0; i < 9; i++)
     gameData[i] = i + intToChar;
+
+  // Initialize playerMarker array
+  for (int i = 0; i < 2; i++)
+    playerMarker[i] = o;
 
   // TODO : Press Enter to initiate the toss
   printf("Press [Enter] to initiate the toss");
@@ -142,7 +147,7 @@ bool init(void) {
   } while (!isValidMarker);
 
   // TODO : Assign marker to player i.e, store values in playerMarker array
-
+  playerMarker[activePlayer] = x;
 
   return true;
 }
