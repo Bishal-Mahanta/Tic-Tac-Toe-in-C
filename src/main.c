@@ -112,8 +112,10 @@ bool init(void) {
   // TODO : Simulate a toss to decide who decides first
   time_t t;
   srand((unsigned)time(&t));
+  const int toss = rand() % 2;
+  activePlayer = toss;
 
-  printf("Player %d will go first", rand() % 2);
+  printf("Player %d will go first", toss);
   printNewLines(1);
 
   // TODO : Display marker menu
@@ -140,6 +142,7 @@ bool init(void) {
   } while (!isValidMarker);
 
   // TODO : Assign marker to player i.e, store values in playerMarker array
+
 
   return true;
 }
