@@ -242,8 +242,10 @@ bool markBoard(void) {
 
   checkForWin();
 
-  switchPlayer();
-  drawBoard();
+  if (isGameRunning) {
+    switchPlayer();
+    drawBoard();
+  }
 
   return true;
 }
@@ -266,7 +268,7 @@ bool checkForWin(void) {
         if (playerScores[activePlayer][i] == winCondition[j][k])
           counter++;
         if (counter == 3) {
-          printf("Win");
+          printf("Player %d Wins 🥳", activePlayer);
           printNewLines(1);
           win = true;
           isGameRunning = false;
