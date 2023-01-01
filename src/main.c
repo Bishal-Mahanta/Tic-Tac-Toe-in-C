@@ -149,11 +149,7 @@ bool init(void) {
   // Assign marker to player i.e, store values in playerMarker array
   playerMarker[activePlayer] = x;
 
-  // Display the marker chosen by the player
-  printNewLines(1);
-  for (int i = 0; i < 2; i++)
-    printf("Player %d: %c\t", i, playerMarker[i]);
-  printNewLines(1);
+  drawBoard();
 
   return true;
 }
@@ -167,6 +163,14 @@ bool init(void) {
 bool drawBoard(void) {
   // ANCHOR drawBoard
 
+  system("clear");
+
+  // Display the marker chosen by the player
+  printNewLines(1);
+  for (int i = 0; i < 2; i++)
+    printf("Player %d: %c\t", i, playerMarker[i]);
+  printNewLines(1);
+
   printf("   |   |   \n");
   printf(" %c | %c | %c \n", gameData[0], gameData[1], gameData[2]);
   printf("---+---+---\n");
@@ -174,6 +178,8 @@ bool drawBoard(void) {
   printf("---+---+---\n");
   printf(" %c | %c | %c \n", gameData[6], gameData[7], gameData[8]);
   printf("   |   |   \n");
+  
+  printNewLines(1);
 
   return true;
 }
