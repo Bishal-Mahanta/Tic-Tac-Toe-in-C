@@ -2,7 +2,7 @@
  * @file main.c
  * @author Bishal Mahanta (bishalmahanta0.0.0@gmail.com)
  * @brief
- * @version 0.1
+ * @version 1.0.0
  * @date 2022-09-12
  *
  * @copyright Copyright (c) 2022
@@ -16,7 +16,6 @@
 #define invalid -1
 
 int gameData[9] = {[0 ... 8] = -1};
-// FIXME: Change the values of x and o to ASCII values
 int x = 88, o = 79, intToChar = 49;
 bool isGameRunning = true;
 
@@ -27,8 +26,6 @@ int playerMarker[2];
 int playerScores[2][9] = {[0 ... 1][0 ... 8] = -1};
 int winCondition[8][3] = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6},
                           {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}};
-// int winCondition[8][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 4, 7},
-//                           {2, 5, 8}, {3, 6, 9}, {1, 5, 9}, {3, 5, 7}};
 
 /**
  * @brief Prints empty lines to console
