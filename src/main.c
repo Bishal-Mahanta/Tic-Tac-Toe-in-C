@@ -150,7 +150,10 @@ bool markBoard(void) {
     return false;
   }
 
-  gameData[position] = activePlayer;
+  gameData[position] = playerMarker[activePlayer];
+  playerScores[activePlayer][position] = position;
+  
+  drawBoard();
 
   return true;
 }
