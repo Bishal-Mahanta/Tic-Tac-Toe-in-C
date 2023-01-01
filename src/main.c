@@ -87,12 +87,19 @@ bool isDraw(void);
 
 int main(int argc, char *argv[]) {
   // ANCHOR Main Function
-  system("clear");
+  char playAgain = 'y';
 
-  init();
-  while (isGameRunning) {
-    markBoard();
-  }
+  do {
+    system("clear");
+    init();
+    while (isGameRunning) {
+      markBoard();
+    }
+
+    printf("\nPlay Again? (y/n): ");
+    scanf(" %c", &playAgain);
+    getchar();
+  } while (playAgain == 'y' || playAgain == 'Y');
 
   return true;
 }
@@ -121,8 +128,10 @@ int printNewLines(int lines) {
  */
 bool init(void) {
   // ANCHOR init
-  // Initialize gameData array
 
+  char startGame = '\0';
+  isGameRunning = true;
+  // Initialize gameData array
   for (int i = 0; i < 9; i++)
     gameData[i] = i + intToChar;
 
@@ -130,16 +139,25 @@ bool init(void) {
   for (int i = 0; i < 2; i++)
     playerMarker[i] = o;
 
+  // Initialize playerScores array
+  for (int i = 0; i < 2; i++)
+    for (int j = 0; j < 9; j++)
+      playerScores[i][j] = invalid;
+      
   // Press Enter to initiate the toss
   printf("Press [Enter] to initiate the toss");
-  char startGame;
   scanf("%c", &startGame);
+  
+  if (startGame != '\n')
+    return false;
+
   printNewLines(1);
+  // system("clear");
 
   // Simulate a toss to decide who decides first
   time_t t;
   srand((unsigned)time(&t));
-  const int toss = rand() % 2;
+  int toss = rand() % 2;
   activePlayer = toss;
 
   printf("Player %d will go first", toss);
