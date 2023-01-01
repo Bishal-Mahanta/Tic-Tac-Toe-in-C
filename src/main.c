@@ -107,14 +107,14 @@ bool init(void) {
   for (int i = 0; i < 2; i++)
     playerMarker[i] = o;
 
-  // TODO : Press Enter to initiate the toss
+  // Press Enter to initiate the toss
   printf("Press [Enter] to initiate the toss");
   char startGame;
   scanf("%c", &startGame);
   printf("%d", startGame);
   printNewLines(1);
 
-  // TODO : Simulate a toss to decide who decides first
+  // Simulate a toss to decide who decides first
   time_t t;
   srand((unsigned)time(&t));
   const int toss = rand() % 2;
@@ -123,13 +123,13 @@ bool init(void) {
   printf("Player %d will go first", toss);
   printNewLines(1);
 
-  // TODO : Display marker menu
+  // Display marker menu
   printf("Choose your marker: \n");
   printf("0. X\n");
   printf("1. O\n");
   printNewLines(1);
 
-  // TODO : Ask Player to choose marker
+  // Ask Player to choose marker
   int marker;
   bool isValidMarker = false;
   do {
@@ -146,10 +146,10 @@ bool init(void) {
 
   } while (!isValidMarker);
 
-  // TODO : Assign marker to player i.e, store values in playerMarker array
+  // Assign marker to player i.e, store values in playerMarker array
   playerMarker[activePlayer] = x;
 
-  // TODO : Display the marker chosen by the player
+  // Display the marker chosen by the player
   printNewLines(1);
   for (int i = 0; i < 2; i++)
     printf("Player %d: %c\t", i, playerMarker[i]);
