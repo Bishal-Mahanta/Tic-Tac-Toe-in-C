@@ -102,6 +102,24 @@ bool init(void) {
   // ANCHOR init
   for (int i = 0; i < 9; i++)
     gameData[i] = i + intToChar;
+  
+  // TODO : Press Enter to initiate the toss
+  printf("Press [Enter] to initiate the toss");
+  char startGame;
+  scanf("%c", &startGame);
+  printf("%d", startGame);
+  printNewLines(1);
+
+  // TODO : Simulate a toss to decide who decides first
+  time_t t;
+  srand((unsigned)time(&t));
+
+  printf("Player %d will go first", rand() % 2);
+  printNewLines(1);
+
+  // TODO : Display marker menu
+  // TODO : Ask Player to choose marker
+  // TODO : Assign marker to player i.e, store values in playerMarker array
 
   return true;
 }
