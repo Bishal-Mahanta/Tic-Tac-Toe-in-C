@@ -221,8 +221,7 @@ bool switchPlayer(void) {
 bool drawBoard(void) {
   // ANCHOR drawBoard
 
-// FIXME : system clear
-  // system("clear");
+  system("clear");
 
   // Display the marker chosen by the player
   printNewLines(1);
