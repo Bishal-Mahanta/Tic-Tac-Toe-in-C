@@ -59,4 +59,4 @@ Game Over (Draw) with option to play again
 
 ---
 
-- This software is created under [GNU General Public License v3]().
+- This software is created under [GNU General Public License v3](src/../LICENSE.md).
