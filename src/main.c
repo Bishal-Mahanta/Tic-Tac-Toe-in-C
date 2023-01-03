@@ -170,8 +170,16 @@ bool init(void) {
   int marker;
   bool isValidMarker = false;
   do {
+    // FIXME : Add a check to see if the input is an integer
     printf("Enter your choice: ");
-    scanf("%d", &marker);
+    int isInt = scanf("%d", &marker);
+    getchar();
+
+    if (isInt != 1) {
+      printf("Invalid marker (not an integer)");
+      printNewLines(1);
+      continue;
+    }
 
     if (marker != 1 && marker != 0) {
       printf("Invalid marker");
@@ -213,7 +221,8 @@ bool switchPlayer(void) {
 bool drawBoard(void) {
   // ANCHOR drawBoard
 
-  system("clear");
+// FIXME : system clear
+  // system("clear");
 
   // Display the marker chosen by the player
   printNewLines(1);
