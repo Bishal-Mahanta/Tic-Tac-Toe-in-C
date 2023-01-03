@@ -37,7 +37,7 @@ Game Over (Draw) with option to play again
 
 ![Game Over (Draw) with option to play again][id4]
 
-[id4]: src/Game%20Play%20Screenshots/5.png "Game Over (Winning) with option to play again"
+[id4]: src/Game%20Play%20Screenshots/5.png "Game Over (Draw) with option to play again"
 
 ### Download
 
